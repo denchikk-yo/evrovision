@@ -1,0 +1,457 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    min-height: 100dvh;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Unbounded', sans-serif;
+    color: white;
+    background: linear-gradient(135deg, #19002e, #3b075e, #721b75);
+}
+
+/* Головний контейнер */
+
+.app-container {
+    width: 100%;
+    max-width: 750px;
+    padding: 35px;
+    background: #250b3d;
+    border: 2px solid #8b3db8;
+    border-radius: 24px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
+}
+
+/* Екрани */
+
+.screen {
+    display: none;
+    width: 100%;
+    text-align: center;
+}
+
+.screen.active {
+    display: block;
+}
+
+.hide {
+    display: none !important;
+}
+
+/* Заголовки та текст */
+
+h1 {
+    margin-top: 0;
+    font-size: 30px;
+    line-height: 1.4;
+    color: #f5c6ff;
+    overflow-wrap: anywhere;
+}
+
+h2 {
+    font-size: 20px;
+    line-height: 1.5;
+    margin: 25px 0 18px;
+}
+
+p {
+    font-size: 14px;
+    line-height: 1.8;
+    color: #e4d4f0;
+}
+
+/* Вибір конкурсу та складності */
+
+.selection-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 25px;
+    margin: 35px 0 25px;
+}
+
+.selection-box {
+    flex: 1;
+    min-width: 0;
+}
+
+.selection-box h2 {
+    min-height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 0 15px;
+    font-size: 17px;
+}
+
+#contest-type,
+#difficulty {
+    display: block;
+    width: 100%;
+    min-height: 48px;
+    padding: 12px;
+    border: 2px solid #a855f7;
+    border-radius: 12px;
+    background: #35104f;
+    color: white;
+    font-family: inherit;
+    font-size: 13px;
+    cursor: pointer;
+    outline: none;
+}
+
+#contest-type:focus,
+#difficulty:focus {
+    border-color: #f5c6ff;
+}
+
+#contest-type option,
+#difficulty option {
+    background: #35104f;
+    color: white;
+}
+
+/* Основні кнопки */
+
+.control-btn {
+    display: inline-block;
+    width: 100%;
+    max-width: 350px;
+    min-height: 50px;
+    margin-top: 15px;
+    padding: 16px 20px;
+    border: none;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #a855f7, #ec4899);
+    color: white;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.control-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(236, 72, 153, 0.35);
+}
+
+.control-btn:active {
+    transform: scale(0.98);
+}
+
+/* Верхня панель квізу */
+
+.quiz-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.question-counter,
+#timer,
+#score-display {
+    padding: 10px 12px;
+    border-radius: 10px;
+    background: #42165f;
+    color: #f5c6ff;
+    font-size: 12px;
+}
+
+/* Прогрес */
+
+.progress-bar {
+    width: 100%;
+    height: 10px;
+    margin-bottom: 25px;
+    overflow: hidden;
+    border-radius: 10px;
+    background: #4a285e;
+}
+
+.progress-fill {
+    width: 0%;
+    height: 100%;
+    border-radius: 10px;
+    background: linear-gradient(90deg, #a855f7, #ec4899);
+    transition: width 0.3s ease;
+}
+
+/* Запитання */
+
+#question-text {
+    margin: 25px 0;
+    font-size: 20px;
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+}
+
+/* Відповіді */
+
+#answers-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+
+.answer-btn {
+    min-width: 0;
+    min-height: 65px;
+    padding: 15px;
+    border: 2px solid #75449a;
+    border-radius: 14px;
+    background: #35104f;
+    color: white;
+    font-family: inherit;
+    font-size: 13px;
+    line-height: 1.6;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+    overflow-wrap: anywhere;
+}
+
+.answer-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    border-color: #d8a4ff;
+    background: #50206e;
+}
+
+.answer-btn:disabled {
+    cursor: default;
+    opacity: 1;
+}
+
+.answer-btn.correct {
+    border-color: #54e6a0;
+    background: #176b4a;
+}
+
+.answer-btn.wrong {
+    border-color: #ff8da1;
+    background: #852b49;
+}
+
+/* Повідомлення */
+
+#feedback {
+    min-height: 25px;
+    margin-top: 20px;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+/* Результати */
+
+#result-text {
+    margin: 25px 0;
+    font-size: 20px;
+    line-height: 1.8;
+    color: #f5c6ff;
+}
+
+/* Планшети */
+
+@media (max-width: 768px) {
+    body {
+        padding: 18px;
+    }
+
+    .app-container {
+        padding: 28px;
+    }
+
+    h1 {
+        font-size: 26px;
+    }
+
+    .selection-container {
+        gap: 18px;
+    }
+}
+
+/* Телефони */
+
+@media (max-width: 600px) {
+    body {
+        padding: 12px;
+        align-items: flex-start;
+    }
+
+    .app-container {
+        width: 100%;
+        max-width: 100%;
+        margin: auto 0;
+        padding: 25px 18px;
+        border-radius: 20px;
+    }
+
+    h1 {
+        font-size: clamp(21px, 6vw, 25px);
+        line-height: 1.4;
+    }
+
+    h2 {
+        font-size: 18px;
+        margin: 20px 0 14px;
+    }
+
+    p {
+        font-size: 12px;
+    }
+
+    /* Списки один під одним */
+
+    .selection-container {
+        flex-direction: column;
+        gap: 22px;
+        margin: 25px 0 20px;
+    }
+
+    .selection-box {
+        width: 100%;
+    }
+
+    .selection-box h2 {
+        min-height: auto;
+        margin-bottom: 12px;
+        font-size: 16px;
+    }
+
+    #contest-type,
+    #difficulty {
+        min-height: 50px;
+        padding: 12px;
+        font-size: 13px;
+    }
+
+    /* Кнопка */
+
+    .control-btn {
+        width: 100%;
+        max-width: none;
+        min-height: 52px;
+        font-size: 14px;
+    }
+
+    /* Панель інформації */
+
+    .quiz-header {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+
+    .question-counter,
+    #timer,
+    #score-display {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 40px;
+        padding: 9px 6px;
+        font-size: 11px;
+    }
+
+    #score-display {
+        grid-column: 1 / -1;
+    }
+
+    /* Запитання */
+
+    #question-text {
+        margin: 22px 0;
+        font-size: 17px;
+        line-height: 1.6;
+    }
+
+    /* Відповіді одна під одною */
+
+    #answers-container {
+        grid-template-columns: 1fr;
+        gap: 11px;
+    }
+
+    .answer-btn {
+        width: 100%;
+        min-height: 55px;
+        padding: 14px;
+        font-size: 13px;
+    }
+
+    #feedback {
+        font-size: 13px;
+    }
+
+    #result-text {
+        font-size: 17px;
+    }
+}
+
+/* Дуже маленькі телефони */
+
+@media (max-width: 360px) {
+    body {
+        padding: 8px;
+    }
+
+    .app-container {
+        padding: 20px 12px;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    .selection-box h2 {
+        font-size: 14px;
+    }
+
+    #contest-type,
+    #difficulty {
+        font-size: 11px;
+    }
+
+    #question-text {
+        font-size: 15px;
+    }
+
+    .answer-btn {
+        font-size: 12px;
+    }
+}
+
+/* Горизонтальне положення телефона */
+
+@media (max-height: 500px) and (orientation: landscape) {
+    body {
+        align-items: flex-start;
+    }
+
+    .app-container {
+        margin: 10px auto;
+    }
+
+    .selection-container {
+        margin: 15px 0;
+    }
+
+    .selection-box h2 {
+        min-height: auto;
+    }
+}

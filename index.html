@@ -1,0 +1,105 @@
+
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Квіз про Євробачення 🎤</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+    <div class="app-container">
+
+        <!-- Початковий екран -->
+        <div id="start-screen" class="screen active">
+
+            <h1>Квіз про Євробачення 🎤</h1>
+
+            <p>
+                Перевір свої знання про найяскравіший музичний конкурс!
+            </p>
+
+            <div class="selection-container">
+
+                <div class="selection-box">
+                    <h2>Який конкурс обираєш?</h2>
+
+                    <select id="contest-type">
+                        <option value="adult">Доросле Євробачення 🎤</option>
+                        <option value="junior">Дитяче Євробачення 🎈</option>
+                    </select>
+                </div>
+
+                <div class="selection-box">
+                    <h2>Обери складність</h2>
+
+                    <select id="difficulty">
+                        <option value="easy">Проста 😊</option>
+                        <option value="hard">Складна 🔥</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <p>10 запитань · 15 секунд на кожне</p>
+
+            <button id="start-btn" class="control-btn" type="button">
+                Почати квіз ✨
+            </button>
+
+        </div>
+
+
+        <!-- Екран запитань -->
+        <div id="quiz-screen" class="screen hide">
+
+            <div class="quiz-header">
+
+                <span id="question-counter" class="question-counter">
+                    Питання 1 із 10
+                </span>
+
+                <span id="timer">
+                    ⏱ 15 с
+                </span>
+
+                <span id="score-display">
+                    Бали: 0
+                </span>
+
+            </div>
+
+            <div class="progress-bar">
+                <div id="progress-fill" class="progress-fill"></div>
+            </div>
+
+            <h2 id="question-text">
+                Запитання 1
+            </h2>
+
+            <div id="answers-container"></div>
+
+            <p id="feedback"></p>
+
+        </div>
+
+
+        <!-- Екран результатів -->
+        <div id="result-screen" class="screen hide">
+
+            <h1>Квіз завершено! 🎉</h1>
+
+            <p id="result-text"></p>
+
+            <button id="restart-btn" class="control-btn" type="button">
+                На головний екран 🔄
+            </button>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
